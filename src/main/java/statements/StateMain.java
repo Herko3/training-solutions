@@ -10,7 +10,7 @@ public class StateMain {
         System.out.println(z);
 
         boolean b = x>y;
-        boolean c = b == true || z>5;
+        boolean c = b  || z>5;
         z++;
 
         System.out.println(b);
