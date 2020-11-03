@@ -22,7 +22,7 @@ public class UserValidator {
     }
 
     public boolean isValidEmail(String email){
-        return email.contains("@") && email.contains(".") && email.indexOf("@")>0 && email.indexOf("@")<email.indexOf(".");
+        return email.contains("@") && email.contains(".") && email.indexOf("@")>0 && email.indexOf("@")+1<email.indexOf(".");
     }
 
 }
