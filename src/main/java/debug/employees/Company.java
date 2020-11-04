@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Company {
-    private List<Employee> company;
+    private List<Employee> employee;
 
-    public Company(List<Employee> company) {
-        this.company = company;
+    public Company(List<Employee> employee) {
+        this.employee = employee;
     }
 
     public void addEmployee(Employee felvetel) {
-        company.add(felvetel);
+        employee.add(felvetel);
     }
 
     public Employee findEmployeeByName(String name) {
-        for (Employee search : company) {
+        for (Employee search : employee) {
             if (search.getName().equals(name)) {
                 return search;
             }
@@ -25,7 +25,7 @@ public class Company {
 
     public List<String> listEmployeeNames() {
         List<String> names = new ArrayList<>();
-        for (Employee all : company) {
+        for (Employee all : employee) {
             names.add(all.getName());
         }
 
