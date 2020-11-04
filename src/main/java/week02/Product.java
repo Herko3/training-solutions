@@ -21,8 +21,7 @@ public class Product {
 
     public boolean areTheyEqual(Product p) {
 
-        return p.getName().equals(name);
-//                && p.getName().length() == code.length();
+        return p.getName().equals(name) && Math.abs(code.length()-p.getCode().length())<2;
     }
 
 
