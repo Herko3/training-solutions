@@ -58,7 +58,11 @@ public class Warrior {
         return name + ": " + "("+position.getX()+ "," + position.getY()+") "+ stamina;
     }
 
-//    public static void main(String[] args) {
+    public String getName() {
+        return name;
+    }
+
+    //    public static void main(String[] args) {
 //        Warrior test1 = new Warrior("Jack",new Point(1,2));
 //        Warrior test2 = new Warrior("Joe", new Point(3,2));
 //
