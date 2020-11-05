@@ -41,7 +41,7 @@ public class Warrior {
 
     public void attack(Warrior dmg){
         if (random.nextDouble()<skill){
-            dmg.stamina -= random.nextInt(3)+1;
+            dmg.stamina = dmg.stamina - (random.nextInt(3)+1);
         }
 
     }
