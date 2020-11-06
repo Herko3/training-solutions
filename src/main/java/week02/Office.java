@@ -49,7 +49,7 @@ public class Office {
     }
     public void printMeetingRoomsContains(String part){
         for (MeetingRoom room : meetingRooms){
-            if(room.getName().contains(part)){
+            if(room.getName().toLowerCase().contains(part.toLowerCase())){
                 System.out.println("A tárgyaló szélesség: " + room.getLength());
                 System.out.println("A tárgyaló hosszúsága: " + room.getWidth());
                 System.out.println("A tárgyaló területe: " + room.getArea());
