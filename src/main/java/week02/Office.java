@@ -41,9 +41,9 @@ public class Office {
     public void printMeetingRoomsWithName(String name){
         for (MeetingRoom room : meetingRooms){
             if(room.getName().equals(name)){
-                System.out.println("A tárgyaló szélesség: " + room.getLength());
-                System.out.println("A tárgyaló hosszúsága: " + room.getWidth());
-                System.out.println("A tárgyaló területe: " + room.getArea());
+                System.out.println("A tárgyaló szélesség: " + room.getLength() + "m");
+                System.out.println("A tárgyaló hosszúsága: " + room.getWidth() + "m");
+                System.out.println("A tárgyaló területe: " + room.getArea() + "m^2");
             }
         }
     }
