@@ -42,7 +42,7 @@ public class MeetingRoom {
 
     @Override
     public String toString() {
-        return "Tárgyaló: " + name + " (adatai: " + width + "*" + length + " területe:" + getArea() + ")";
+        return "Tárgyaló: " + name + " (adatai: " + width +"m "+ "*" + length + "m " + " területe:" + getArea() + "m^2)";
     }
 
 //    public static void main(String[] args) {
