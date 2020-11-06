@@ -56,6 +56,18 @@ public class Office {
             }
         }
     }
+    public void printMeetingRoomsFirstContains(String part){
+        List<MeetingRoom> match = new ArrayList<>();
+        for (MeetingRoom room : meetingRooms){
+            if(room.getName().toLowerCase().contains(part.toLowerCase())){
+               match.add(room);
+            }
+        }
+        System.out.println("A tárgyaló szélesség: " + match.get(0).getLength());
+        System.out.println("A tárgyaló hosszúsága: " + match.get(0).getWidth());
+        System.out.println("A tárgyaló területe: " + match.get(0).getArea());
+
+    }
 
     public void printAreasLargerThan (int area){
         System.out.println("A következő tárgyalóknak nagyobb a területe:");

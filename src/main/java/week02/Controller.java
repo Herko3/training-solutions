@@ -80,11 +80,20 @@ public class Controller {
             printMenu();
         }
         if (choice == 6) {
-            System.out.println("Keresendő kifejezés?");
-            office.printMeetingRoomsContains(scanner.nextLine());
-            System.out.println("Visszatéréshez nyomjon ENTER-t");
-            scanner.nextLine();
-            printMenu();
+            System.out.println("Az összes ezt tartalmazó tárgyalót kilistázzuk? <y/n>");
+            if (scanner.nextLine().equals("y")) {
+                System.out.println("Keresendő kifejezés?");
+                office.printMeetingRoomsContains(scanner.nextLine());
+                System.out.println("Visszatéréshez nyomjon ENTER-t");
+                scanner.nextLine();
+                printMenu();
+            } else {
+                System.out.println("Keresendő kifejezés?");
+                office.printMeetingRoomsFirstContains(scanner.nextLine());
+                System.out.println("Visszatéréshez nyomjon ENTER-t");
+                scanner.nextLine();
+                printMenu();
+            }
         }
         if (choice == 7) {
             System.out.println("A keresendő terület mérete?");
