@@ -17,7 +17,6 @@ public class Controller {
         String name;
         int length;
         int width;
-        List<MeetingRoom> meetingRooms = new ArrayList<>();
         for (int i = 0; i < numberOfMeetingRooms; i++) {
             System.out.println("Adja meg a(z) " + (i + 1) + ". tárgyaló nevét");
             name = scanner.nextLine();
@@ -27,9 +26,8 @@ public class Controller {
             System.out.println("Adja meg a(z) " + (i + 1) + ". tárgyaló szélességét méterben");
             width = scanner.nextInt();
             scanner.nextLine();
-            meetingRooms.add(new MeetingRoom(name, length, width));
+            office.addMeetingRoom(new MeetingRoom(name, length, width));
         }
-        office.addMeetingRoom(meetingRooms);
         printMenu();
     }
 
