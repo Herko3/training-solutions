@@ -23,4 +23,9 @@ public class Member {
     public void connectMember(Member member){
         connections.add(member);
     }
+
+    @Override
+    public String toString() {
+        return name + " " + connections.toString();
+    }
 }
