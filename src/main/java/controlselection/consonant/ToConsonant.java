@@ -1,10 +1,10 @@
 package controlselection.consonant;
 
 public class ToConsonant {
-    private static final String mgh = "aeiou";
+    private static final String MGH = "aeiou";
 
     public char next(char betu){
-        if (mgh.indexOf(betu)>=0){
+        if (MGH.indexOf(betu)>=0){
             return (char) (betu+1);
         }else {
             return betu;
