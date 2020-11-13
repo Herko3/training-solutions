@@ -66,13 +66,14 @@ public class Student {
 
     @Override
     public String toString() {
-        String values = "";
+        StringBuilder builder = new StringBuilder(name);
+        builder.append(" marks: ");
         for(Mark mark : marks){
-            values = values.concat(mark.getSubject().getSubjectName());
-            values += ": ";
-            values = values.concat(mark.toString());
+            builder.append(mark.getSubject().getSubjectName());
+            builder.append(": ");
+            builder.append(mark.toString());
         }
 
-        return name + " marks: " + values;
+        return builder.toString();
     }
 }
