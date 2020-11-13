@@ -16,15 +16,22 @@ public class ClassRecords {
     }
 
     public boolean addStudent(Student student) {
-        if (!students.contains(student)) {
-            students.add(student);
-            return true;
-        }
-        return false;
+        for (Student search : students)
+            if (search.getName().equals(student.getName())) {
+                return false;
+            }
+        students.add(student);
+        return true;
     }
 
+
     public double calculateClassAverage() {
-        return 0.0;
+        double sum = 0.0;
+        for (Student student : students) {
+            sum += student.calculateAverage();
+        }
+
+        return sum / students.size();
     }
 
     public double calculateClassAverageBySubject(Subject subject) {
@@ -32,6 +39,12 @@ public class ClassRecords {
     }
 
     public Student findStudentByName(String name) {
+        if (students.isEmpty()) {
+            throw new IllegalStateException("No students to search!");
+        }
+        if (isEmpty(name)) {
+            throw new IllegalArgumentException("Student name must not be empty!");
+        }
         for (Student student : students) {
             if (student.getName().equals(name)) {
                 return student;
@@ -44,30 +57,40 @@ public class ClassRecords {
         return className;
     }
 
-    public boolean isEmpty(String test){
-        if(test==null || test.trim().equals("")){
+    public boolean isEmpty(String test) {
+        if (test == null || test.trim().equals("")) {
             return true;
         }
         return false;
     }
 
-    public String listStudentNames(){
-        return "LATER";
+    public String listStudentNames() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < students.size(); i++) {
+            if (i == students.size() - 1) {
+                builder.append(students.get(i).getName());
+            } else {
+                builder.append(students.get(i).getName());
+                builder.append(", ");
+            }
+        }
+        return builder.toString();
     }
 
-    public List<StudyResultByName> listStudyResults(){
+    public List<StudyResultByName> listStudyResults() {
         return null;
     }
 
-    public boolean removeStudent(Student student){
-        if (students.contains(student)){
-            students.remove(student);
-            return true;
-        }
+    public boolean removeStudent(Student student) {
+        for (Student search : students)
+            if (search.getName().equals(student.getName())) {
+                students.remove(student);
+                return true;
+            }
         return false;
     }
-    public Student repetition(){
+
+    public Student repetition() {
         return null;
     }
-
 }
