@@ -11,7 +11,7 @@ public class Operation {
         if(!s.contains("+")){
             throw new IllegalArgumentException("Nem megfelelő megadás");
         }
-
+//        String[] sajt = s.split("\\+");
         leftValue = Integer.parseInt(s.substring(0,s.indexOf("+")).trim());
         rightValue = Integer.parseInt(s.substring(s.indexOf("+")+1).trim());
     }
