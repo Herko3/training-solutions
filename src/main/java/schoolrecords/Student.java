@@ -68,9 +68,11 @@ public class Student {
     public String toString() {
         String values = "";
         for(Mark mark : marks){
-            values.concat(mark.getSubject().getSubjectName() + mark.getMarkType().toString());
+            values = values.concat(mark.getSubject().getSubjectName());
+            values += ": ";
+            values = values.concat(mark.toString());
         }
 
-        return name + " marks:" + values;
+        return name + " marks: " + values;
     }
 }
