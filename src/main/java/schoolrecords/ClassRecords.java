@@ -26,16 +26,39 @@ public class ClassRecords {
 
 
     public double calculateClassAverage() {
+        if (students.isEmpty()) {
+            throw new ArithmeticException("No student in the class, average calculation aborted!");
+        }
+        int studentWithMark = 0;
         double sum = 0.0;
         for (Student student : students) {
-            sum += student.calculateAverage();
+            double sumPerson = student.calculateAverage();
+            if (sumPerson != 0) {
+                sum += sumPerson;
+                studentWithMark++;
+            }
+        }
+        if (studentWithMark == 0) {
+            throw new ArithmeticException("No marks present, average calculation aborted!");
         }
 
         return sum / students.size();
     }
 
     public double calculateClassAverageBySubject(Subject subject) {
-        return 0.0;
+        if (students.isEmpty()) {
+            throw new ArithmeticException("No student in the class, average calculation aborted!");
+        }
+        int numberOfAverage = 0;
+        double sum = 0.0;
+        for (Student student : students) {
+            double sumPerson = student.calculateSubjectAverage(subject);
+            if (sumPerson != 0.0) {
+                sum += sumPerson;
+                numberOfAverage++;
+            }
+        }
+        return sum / numberOfAverage;
     }
 
     public Student findStudentByName(String name) {
@@ -78,7 +101,12 @@ public class ClassRecords {
     }
 
     public List<StudyResultByName> listStudyResults() {
-        return null;
+        List<StudyResultByName> results = new ArrayList<>();
+        for (Student student : students) {
+            results.add(new StudyResultByName(student.getName(), student.calculateAverage()));
+        }
+
+        return results;
     }
 
     public boolean removeStudent(Student student) {
@@ -91,6 +119,9 @@ public class ClassRecords {
     }
 
     public Student repetition() {
-        return null;
+        if (students.isEmpty()) {
+            throw new IllegalStateException("No students to select for repetition!");
+        }
+        return students.get(rnd.nextInt(students.size()));
     }
 }

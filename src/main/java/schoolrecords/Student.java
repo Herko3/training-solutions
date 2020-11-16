@@ -16,7 +16,7 @@ public class Student {
     }
 
     public double calculateAverage() {
-        if(marks.size() == 0){
+        if(marks.isEmpty()){
             return 0.0;
         }
         double sum = 0.0;
@@ -28,7 +28,7 @@ public class Student {
     }
 
     public double calculateSubjectAverage(Subject subject) {
-        if(marks.size() == 0){
+        if(marks.isEmpty()){
             return 0.0;
         }
         double sum = 0.0;
