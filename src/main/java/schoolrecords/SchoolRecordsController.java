@@ -1,10 +1,7 @@
 package schoolrecords;
 
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class SchoolRecordsController {
 
@@ -41,7 +38,45 @@ public class SchoolRecordsController {
 
     public void runMenu(){
         Scanner scanner = new Scanner(System.in);
+        try{
+            int choice = scanner.nextInt();
+            while(choice !=11){
+                switch (choice){
+                    case 1: classRecords.listStudentNames();
+                    cont();
+                    case 2:
+                        System.out.println("Adja meg a keresendő nevet:");
+                        String name = scanner.nextLine();
+                        classRecords.findStudentByName(name);
+                        cont();
+                    case 3:
+                        System.out.println("Adja meg az új diák nevét:");
+                        scanner.skip("\n");
+                        String addName =  scanner.nextLine();
+                        classRecords.addStudent(new Student(addName));
+                        cont();
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                    default:
+                        printMenu();
+                }
+            }
+        } catch (InputMismatchException ex){
+            printMenu();
+        }
 
+    }
+
+    public void cont(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Folytatáshoz nyomja meg az ENTER-t");
+        scanner.nextLine();
+        printMenu();
     }
 
 
