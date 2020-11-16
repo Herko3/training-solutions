@@ -1,6 +1,6 @@
 package algorithmsdecision.bankaccounts;
 
-public enum Status {
+public enum TransactionStatus {
 
     CREATED,SUCCEEDED,PENDING;
 

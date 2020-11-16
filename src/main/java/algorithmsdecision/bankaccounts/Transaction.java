@@ -8,7 +8,7 @@ public class Transaction {
     private TransactionOperation transactionOperation;
     private int amount;
     private LocalDateTime dateOfTransaction;
-    private Status status;
+    private TransactionStatus status;
 
     public Transaction(String accountNumber, TransactionOperation transactionOperation, int amount, LocalDateTime dateOfTransaction) {
         this.accountNumber = accountNumber;
@@ -47,7 +47,11 @@ public class Transaction {
         return dateOfTransaction;
     }
 
-    public Status getStatus() {
+    public TransactionStatus getStatus() {
         return status;
+    }
+
+    public void setStatus(TransactionStatus status) {
+        this.status = status;
     }
 }
