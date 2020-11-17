@@ -16,7 +16,7 @@ public class SchoolRecordsController {
                 new Subject("zene"),
                 new Subject("fizika"),
                 new Subject("kémia"));
-        tutors.add(new Tutor("Nagy Csilla", subjects));
+        tutors = Arrays.asList(new Tutor("Nagy Csilla", subjects));
         classRecords = new ClassRecords("Fourth Grade A", new Random());
     }
 
@@ -73,6 +73,7 @@ public class SchoolRecordsController {
                 classRecords.removeStudent(classRecords.findStudentByName(delete));
                 break;
             case 5:
+                System.out.println(classRecords.repetition());
                 break;
             case 6:
                 System.out.println("Az osztály átlaga:");
