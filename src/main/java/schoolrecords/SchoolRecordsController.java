@@ -6,7 +6,7 @@ import java.util.*;
 public class SchoolRecordsController {
 
     private ClassRecords classRecords;
-    private Tutor tutor;
+    private List<Tutor> tutors;
     private List<Subject> subjects;
 
     public void initSchool() {
@@ -16,7 +16,7 @@ public class SchoolRecordsController {
                 new Subject("zene"),
                 new Subject("fizika"),
                 new Subject("kémia"));
-        tutor = new Tutor("Nagy Csilla", subjects);
+        tutors.add(new Tutor("Nagy Csilla", subjects));
         classRecords = new ClassRecords("Fourth Grade A", new Random());
     }
 
@@ -37,6 +37,7 @@ public class SchoolRecordsController {
     }
 
     public void runMenu() {
+        System.out.printf("Adja meg a választott menüpont számát:");
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         try {
@@ -50,45 +51,85 @@ public class SchoolRecordsController {
 
         switch (choice) {
             case 1:
+                System.out.println("Az osztály diákjai:");
                 System.out.println(classRecords.listStudentNames());
-                cont();
+                break;
             case 2:
                 System.out.println("Adja meg a keresendő nevet:");
                 scanner.skip("\n");
                 String name = scanner.nextLine();
                 System.out.println(classRecords.findStudentByName(name));
-                cont();
+                break;
             case 3:
                 System.out.println("Adja meg az új diák nevét:");
                 scanner.skip("\n");
-                String addName = scanner.nextLine();
-                classRecords.addStudent(new Student(addName));
-                cont();
+                name = scanner.nextLine();
+                classRecords.addStudent(new Student(name));
+                break;
             case 4:
                 System.out.println("Törölni kívánt diák neve:");
                 scanner.skip("\n");
                 String delete = scanner.nextLine();
                 classRecords.removeStudent(classRecords.findStudentByName(delete));
-                cont();
+                break;
             case 5:
+                break;
             case 6:
+                System.out.println("Az osztály átlaga:");
+                System.out.println(classRecords.calculateClassAverage());
+                break;
             case 7:
+                System.out.println("Melyik tantárgyra kívánja nézni?");
+                String subject = scanner.nextLine();
+                System.out.println(classRecords.calculateClassAverageBySubject(getSubject(subject)));
+                break;
             case 8:
+                System.out.println("Diákok átlagai:");
+                System.out.println(classRecords.listStudyResults());
+                break;
             case 9:
+                System.out.println("Adja meg a diák nevét");
+                name = scanner.nextLine();
+                System.out.println(classRecords.findStudentByName(name).calculateAverage());
+                break;
             case 10:
+                System.out.println("Adja meg a diák nevét");
+                name = scanner.nextLine();
+                System.out.println("Adja meg a kívánt tantárgyat");
+                subject = scanner.nextLine();
+                System.out.println(classRecords.findStudentByName(name).calculateSubjectAverage(getSubject(subject)));
+                break;
             case 11:
                 System.exit(0);
             default:
                 printMenu();
         }
-
+        cont();
     }
 
-    public void cont() {
+    private void cont() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Folytatáshoz nyomja meg az ENTER-t");
         scanner.nextLine();
         printMenu();
+    }
+
+    private Subject getSubject(String subjectName){
+        for(Subject all : subjects){
+            if(all.getSubjectName().equals(subjectName)){
+                return all;
+            }
+        }
+        throw new IllegalArgumentException("Nincs ilyen tárgy");
+    }
+
+    private Tutor getTutor(String tutorName){
+        for(Tutor all : tutors){
+            if(all.getName().equals(tutorName)){
+                return all;
+            }
+        }
+        throw new IllegalArgumentException("Nincs ilyen tanár");
     }
 
 
