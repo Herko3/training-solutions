@@ -48,7 +48,7 @@ public class SchoolRecordsController {
             System.out.println("Csak számokat írjon be");
             cont();
         }
-
+        String name = "";
         switch (choice) {
             case 1:
                 System.out.println("Az osztály diákjai:");
@@ -57,30 +57,48 @@ public class SchoolRecordsController {
             case 2:
                 System.out.println("Adja meg a keresendő nevet:");
                 scanner.skip("\n");
-                String name = scanner.nextLine();
-                System.out.println(classRecords.findStudentByName(name));
+                name = scanner.nextLine();
+                try {
+                    System.out.println(classRecords.findStudentByName(name));
+                } catch (IllegalStateException ise) {
+                    System.out.println(ise.getMessage());
+                } catch (IllegalArgumentException iae){
+                    System.out.println(iae.getMessage());
+                }
                 break;
             case 3:
                 System.out.println("Adja meg az új diák nevét:");
                 scanner.skip("\n");
                 name = scanner.nextLine();
-                classRecords.addStudent(new Student(name));
+                try {
+                    classRecords.addStudent(new Student(name));
+                } catch (IllegalArgumentException iae){
+                    System.out.println(iae.getMessage());
+                }
                 break;
             case 4:
                 System.out.println("Törölni kívánt diák neve:");
                 scanner.skip("\n");
                 String delete = scanner.nextLine();
-                classRecords.removeStudent(classRecords.findStudentByName(delete));
+                try{
+                    classRecords.removeStudent(classRecords.findStudentByName(delete));
+                } catch (IllegalArgumentException iae){
+                    System.out.println(iae.getMessage());
+                } catch (IllegalStateException ise){
+                    System.out.println(ise.getMessage());
+                }
                 break;
             case 5:
                 Student repetition = classRecords.repetition();
                 System.out.println(repetition.getName() + " fog felelni!");
                 System.out.println("Adja meg a tantárgyat amiből felelni fog:");
+                scanner.skip("\n");
                 String subject = scanner.nextLine();
                 System.out.println("Adja meg a tárgyat tanító nevét:");
                 name = scanner.nextLine();
                 System.out.println("Adja meg az érdemjegyet (A/B/C/D/F)");
                 String mark = scanner.nextLine();
+                repetition.grading(new Mark(MarkType.valueOf(mark), getSubject(subject), getTutor(name)));
                 break;
             case 6:
                 System.out.println("Az osztály átlaga:");
@@ -97,7 +115,8 @@ public class SchoolRecordsController {
                 System.out.println(classRecords.listStudyResults());
                 break;
             case 9:
-                System.out.println("Adja meg a diák nevét");
+                System.out.println("Adja meg a diák nevét:");
+                scanner.skip("\n");
                 name = scanner.nextLine();
                 System.out.println(classRecords.findStudentByName(name).calculateAverage());
                 break;
@@ -110,6 +129,7 @@ public class SchoolRecordsController {
                 break;
             case 11:
                 System.exit(0);
+                break;
             default:
                 printMenu();
         }
@@ -123,9 +143,9 @@ public class SchoolRecordsController {
         printMenu();
     }
 
-    private Subject getSubject(String subjectName){
-        for(Subject all : subjects){
-            if(all.getSubjectName().equals(subjectName.toLowerCase())){
+    private Subject getSubject(String subjectName) {
+        for (Subject all : subjects) {
+            if (all.getSubjectName().equalsIgnoreCase(subjectName)) {
                 return all;
             }
         }
@@ -134,9 +154,9 @@ public class SchoolRecordsController {
         return null;
     }
 
-    private Tutor getTutor(String tutorName){
-        for(Tutor all : tutors){
-            if(all.getName().equals(tutorName)){
+    private Tutor getTutor(String tutorName) {
+        for (Tutor all : tutors) {
+            if (all.getName().equalsIgnoreCase(tutorName)) {
                 return all;
             }
         }

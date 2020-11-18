@@ -17,4 +17,9 @@ public class StudyResultByName {
     public double getStudyAverage() {
         return studyAverage;
     }
+
+    @Override
+    public String toString() {
+        return studentName + " átlaga: " + studyAverage;
+    }
 }
