@@ -73,7 +73,14 @@ public class SchoolRecordsController {
                 classRecords.removeStudent(classRecords.findStudentByName(delete));
                 break;
             case 5:
-                System.out.println(classRecords.repetition());
+                Student repetition = classRecords.repetition();
+                System.out.println(repetition.getName() + " fog felelni!");
+                System.out.println("Adja meg a tantárgyat amiből felelni fog:");
+                String subject = scanner.nextLine();
+                System.out.println("Adja meg a tárgyat tanító nevét:");
+                name = scanner.nextLine();
+                System.out.println("Adja meg az érdemjegyet (A/B/C/D/F)");
+                String mark = scanner.nextLine();
                 break;
             case 6:
                 System.out.println("Az osztály átlaga:");
@@ -81,7 +88,8 @@ public class SchoolRecordsController {
                 break;
             case 7:
                 System.out.println("Melyik tantárgyra kívánja nézni?");
-                String subject = scanner.nextLine();
+                scanner.skip("\n");
+                subject = scanner.nextLine();
                 System.out.println(classRecords.calculateClassAverageBySubject(getSubject(subject)));
                 break;
             case 8:
@@ -117,11 +125,13 @@ public class SchoolRecordsController {
 
     private Subject getSubject(String subjectName){
         for(Subject all : subjects){
-            if(all.getSubjectName().equals(subjectName)){
+            if(all.getSubjectName().equals(subjectName.toLowerCase())){
                 return all;
             }
         }
-        throw new IllegalArgumentException("Nincs ilyen tárgy");
+        System.out.println("Nincs ilyen tárgy");
+        cont();
+        return null;
     }
 
     private Tutor getTutor(String tutorName){
@@ -130,7 +140,9 @@ public class SchoolRecordsController {
                 return all;
             }
         }
-        throw new IllegalArgumentException("Nincs ilyen tanár");
+        System.out.println("Nincs ilyen nevű tanár");
+        cont();
+        return null;
     }
 
 
