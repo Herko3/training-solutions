@@ -18,9 +18,11 @@ public class ClassRecords {
     public boolean addStudent(Student student) {
         for (Student search : students)
             if (search.getName().equals(student.getName())) {
+                System.out.println("Ez a diák már szerepel a listában!");
                 return false;
             }
         students.add(student);
+        System.out.println("Sikeres felvétel: " +student.getName());
         return true;
     }
 
