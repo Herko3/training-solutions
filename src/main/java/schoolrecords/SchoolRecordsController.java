@@ -9,6 +9,8 @@ public class SchoolRecordsController {
     private List<Tutor> tutors;
     private List<Subject> subjects;
 
+    private Scanner scanner = new Scanner(System.in);
+
     public void initSchool() {
         subjects = Arrays.asList(new Subject("földrajz"),
                 new Subject("matematika"),
@@ -38,94 +40,47 @@ public class SchoolRecordsController {
 
     public void runMenu() {
         System.out.printf("Adja meg a választott menüpont számát:");
-        Scanner scanner = new Scanner(System.in);
         int choice = 0;
         try {
 
             choice = scanner.nextInt();
-
+            scanner.skip("\n");
         } catch (InputMismatchException ex) {
             System.out.println("Csak számokat írjon be");
             cont();
         }
-        String name = "";
         switch (choice) {
             case 1:
                 System.out.println("Az osztály diákjai:");
                 System.out.println(classRecords.listStudentNames());
                 break;
             case 2:
-                System.out.println("Adja meg a keresendő nevet:");
-                scanner.skip("\n");
-                name = scanner.nextLine();
-                try {
-                    System.out.println(classRecords.findStudentByName(name));
-                } catch (IllegalStateException ise) {
-                    System.out.println(ise.getMessage());
-                } catch (IllegalArgumentException iae){
-                    System.out.println(iae.getMessage());
-                }
+                caseFind();
                 break;
             case 3:
-                System.out.println("Adja meg az új diák nevét:");
-                scanner.skip("\n");
-                name = scanner.nextLine();
-                try {
-                    classRecords.addStudent(new Student(name));
-                } catch (IllegalArgumentException iae){
-                    System.out.println(iae.getMessage());
-                }
+                caseAddNew();
                 break;
             case 4:
-                System.out.println("Törölni kívánt diák neve:");
-                scanner.skip("\n");
-                String delete = scanner.nextLine();
-                try{
-                    classRecords.removeStudent(classRecords.findStudentByName(delete));
-                } catch (IllegalArgumentException iae){
-                    System.out.println(iae.getMessage());
-                } catch (IllegalStateException ise){
-                    System.out.println(ise.getMessage());
-                }
+                caseDelete();
                 break;
             case 5:
-                Student repetition = classRecords.repetition();
-                System.out.println(repetition.getName() + " fog felelni!");
-                System.out.println("Adja meg a tantárgyat amiből felelni fog:");
-                scanner.skip("\n");
-                String subject = scanner.nextLine();
-                System.out.println("Adja meg a tárgyat tanító nevét:");
-                name = scanner.nextLine();
-                System.out.println("Adja meg az érdemjegyet (A/B/C/D/F)");
-                String mark = scanner.nextLine();
-                repetition.grading(new Mark(MarkType.valueOf(mark), getSubject(subject), getTutor(name)));
+                caseRepetition();
                 break;
             case 6:
-                System.out.println("Az osztály átlaga:");
-                System.out.println(classRecords.calculateClassAverage());
+                caseClassAverage();
                 break;
             case 7:
-                System.out.println("Melyik tantárgyra kívánja nézni?");
-                scanner.skip("\n");
-                subject = scanner.nextLine();
-                System.out.println(classRecords.calculateClassAverageBySubject(getSubject(subject)));
+                caseClassAverageBySubject();
                 break;
             case 8:
                 System.out.println("Diákok átlagai:");
                 System.out.println(classRecords.listStudyResults());
                 break;
             case 9:
-                System.out.println("Adja meg a diák nevét:");
-                scanner.skip("\n");
-                name = scanner.nextLine();
-                System.out.println(classRecords.findStudentByName(name).calculateAverage());
+                caseAverageOfStudent();
                 break;
             case 10:
-                System.out.println("Adja meg a diák nevét");
-                name = scanner.nextLine();
-                System.out.println("Adja meg a kívánt tantárgyat");
-                subject = scanner.nextLine();
-                System.out.println(classRecords.findStudentByName(name).calculateSubjectAverage(getSubject(subject)));
+                caseAverageOfStudentBySubject();
                 break;
             case 11:
                 System.exit(0);
@@ -137,10 +92,84 @@ public class SchoolRecordsController {
     }
 
     private void cont() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Folytatáshoz nyomja meg az ENTER-t");
         scanner.nextLine();
         printMenu();
+    }
+
+    private void caseFind(){
+        System.out.println("Adja meg a keresendő nevet:");
+        String name = scanner.nextLine();
+        try {
+            System.out.println(classRecords.findStudentByName(name));
+        } catch (IllegalStateException ise) {
+            System.out.println(ise.getMessage());
+        } catch (IllegalArgumentException iae){
+            System.out.println(iae.getMessage());
+        }
+    }
+
+    private void caseAddNew(){
+        System.out.println("Adja meg az új diák nevét:");
+        String name = scanner.nextLine();
+        try {
+            classRecords.addStudent(new Student(name));
+        } catch (IllegalArgumentException iae){
+            System.out.println(iae.getMessage());
+        }
+    }
+
+    private void caseDelete(){
+        System.out.println("Törölni kívánt diák neve:");
+        String delete = scanner.nextLine();
+        try{
+            classRecords.removeStudent(classRecords.findStudentByName(delete));
+        } catch (IllegalArgumentException iae){
+            System.out.println(iae.getMessage());
+        } catch (IllegalStateException ise){
+            System.out.println(ise.getMessage());
+        }
+    }
+
+    private void caseRepetition(){
+        Student repetition = classRecords.repetition();
+        System.out.println(repetition.getName() + " fog felelni!");
+        System.out.println("Adja meg a tantárgyat amiből felelni fog:");
+        String subject = scanner.nextLine();
+        System.out.println("Adja meg a tárgyat tanító nevét:");
+        String name = scanner.nextLine();
+        System.out.println("Adja meg az érdemjegyet (A/B/C/D/F)");
+        String mark = scanner.nextLine();
+        repetition.grading(new Mark(MarkType.valueOf(mark), getSubject(subject), getTutor(name)));
+    }
+
+    private void caseClassAverage(){
+        System.out.println("Az osztály átlaga:");
+        try {
+            System.out.println(classRecords.calculateClassAverage());
+        } catch (ArithmeticException ae){
+            System.out.println(ae.getMessage());
+        }
+    }
+
+    private void caseClassAverageBySubject(){
+        System.out.println("Melyik tantárgyra kívánja nézni?");
+        String subject = scanner.nextLine();
+        System.out.println(classRecords.calculateClassAverageBySubject(getSubject(subject)));
+    }
+
+    private void caseAverageOfStudent(){
+        System.out.println("Adja meg a diák nevét:");
+        String name = scanner.nextLine();
+        System.out.println(classRecords.findStudentByName(name).calculateAverage());
+    }
+
+    private void caseAverageOfStudentBySubject(){
+        System.out.println("Adja meg a diák nevét");
+        String name = scanner.nextLine();
+        System.out.println("Adja meg a kívánt tantárgyat");
+        String subject = scanner.nextLine();
+        System.out.println(classRecords.findStudentByName(name).calculateSubjectAverage(getSubject(subject)));
     }
 
     private Subject getSubject(String subjectName) {
