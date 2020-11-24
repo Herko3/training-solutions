@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ChangeLetter {
 
-    private final List<String> VOWELS = Arrays.asList("a","e","i","o","u","á","é","í","ó","ö","ő","ú","ü","ű");
+    private static final List<String> VOWELS = Arrays.asList("a","e","i","o","u","á","é","í","ó","ö","ő","ú","ü","ű");
 
     public String changeVowels(String s){
         StringBuilder sb = new StringBuilder(s.toLowerCase());
