@@ -3,6 +3,9 @@ package week05d03;
 public class UserValidator {
 
     public void validate(User user){
+        if(user == null){
+            throw new RuntimeException("No user to validate");
+        }
         if(isEmpty(user.getName())){
             throw new RuntimeException("User name must not be empty or null!");
         }
