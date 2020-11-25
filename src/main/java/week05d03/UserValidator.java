@@ -9,6 +9,7 @@ public class UserValidator {
         if(user.getAge()<0 || user.getAge()>120){
             throw new RuntimeException("User age most be valid and under 120");
         }
+        System.out.println("The user is valid");
     }
 
     private boolean isEmpty(String s){
