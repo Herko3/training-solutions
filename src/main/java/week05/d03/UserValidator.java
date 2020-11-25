@@ -7,6 +7,10 @@ public class UserValidator {
 
     private List<User> users = new ArrayList<>();
 
+    public List<User> getUsers() {
+        return users;
+    }
+
     public void validate(List<User> users){
         if(users == null){
             throw new RuntimeException("No user to validate");
