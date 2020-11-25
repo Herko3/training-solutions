@@ -1,18 +1,25 @@
 package week05.d03;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserValidator {
 
-    public void validate(User user){
-        if(user == null){
+    private List<User> users = new ArrayList<>();
+
+    public void validate(List<User> users){
+        if(users == null){
             throw new RuntimeException("No user to validate");
         }
-        if(isEmpty(user.getName())){
-            throw new RuntimeException("User name must not be empty or null!");
+        for(User user : users) {
+            if (isEmpty(user.getName())) {
+                throw new RuntimeException("User name must not be empty or null!" + user);
+            }
+            if (user.getAge() < 0 || user.getAge() > 120) {
+                throw new RuntimeException("User age most be valid and under 120" + user);
+            }
         }
-        if(user.getAge()<0 || user.getAge()>120){
-            throw new RuntimeException("User age most be valid and under 120");
-        }
-        System.out.println("The user is valid");
+        System.out.println("The users are valid");
     }
 
     private boolean isEmpty(String s){
