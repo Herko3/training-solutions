@@ -6,6 +6,9 @@ public class Product {
     private Currency currency;
 
     public Product(long price, Currency currency) {
+        if(currency == null){
+            throw new IllegalArgumentException("Currency can't be null");
+        }
         this.price = price;
         this.currency = currency;
     }
