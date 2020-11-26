@@ -11,4 +11,12 @@ public class Product {
         this.name = name;
         expire = LocalDate.of(year,month,day);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getExpire() {
+        return expire;
+    }
 }
