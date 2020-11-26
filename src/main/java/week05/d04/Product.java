@@ -14,6 +14,10 @@ public class Product {
     }
 
     public double convertPrice(Currency convert){
+        if(convert == null){
+            throw new IllegalArgumentException("Currency can't be null");
+        }
+
         if(currency.equals(Currency.HUF)) {
             return price * convert.getInHuf();
         }
