@@ -8,7 +8,7 @@ public class ListOfGoodPubs {
     private List<Pub> pubs = new ArrayList<>();
 
     public ListOfGoodPubs(List<Pub> pubs) {
-        if(pubs == null || pubs.size() == 0){
+        if(pubs == null || pubs.isEmpty()){
             throw new IllegalArgumentException("Pub list is empty!");
         }
 
