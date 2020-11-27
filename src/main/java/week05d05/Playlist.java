@@ -8,6 +8,9 @@ public class Playlist {
     private List<Song> songs = new ArrayList<>();
 
     public Playlist(List<Song> songs) {
+        if(songs == null || songs.isEmpty()){
+            throw new IllegalArgumentException("Playlist is empty");
+        }
         this.songs = songs;
     }
 
@@ -22,6 +25,7 @@ public class Playlist {
         return greater;
     }
 
-
-
+    public List<Song> getSongs() {
+        return songs;
+    }
 }
