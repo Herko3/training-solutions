@@ -40,9 +40,7 @@ public class Measurement {
     }
 
     public ExtremValues minmax() {
-        ExtremValues minmax = new ExtremValues(minimum(),maximum());
-
-        return minmax;
+        return new ExtremValues(minimum(),maximum());
     }
 
 
