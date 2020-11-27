@@ -41,6 +41,6 @@ class PlaylistTest {
 
     @Test
     public void testGreater () {
-
+        assertEquals(1,test.findByLengthGreaterThan(5).size());
     }
 }
