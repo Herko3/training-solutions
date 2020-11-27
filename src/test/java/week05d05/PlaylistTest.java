@@ -24,6 +24,7 @@ class PlaylistTest {
 
     @Test
     public void testExceptions(){
-
+        Exception ex = assertThrows(IllegalArgumentException.class,()->new Song("",300,"sg"));
+        assertEquals("Name and Artist must be something!",ex.getMessage());
     }
 }
