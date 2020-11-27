@@ -28,4 +28,11 @@ public class Playlist {
     public List<Song> getSongs() {
         return songs;
     }
+
+    @Override
+    public String toString() {
+        return "Playlist{" +
+                "songs=" + songs +
+                '}';
+    }
 }
