@@ -2,7 +2,7 @@ package week06d01;
 
 import java.util.Scanner;
 
-public class SeperatedSum {
+public class SeparatedSum {
 
     public SumResults sum(String s) {
         if (isEmpty(s)){
