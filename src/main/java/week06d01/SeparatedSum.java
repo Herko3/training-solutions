@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class SeparatedSum {
 
     public SumResults sum(String s) {
-        if (isEmpty(s)){
+        if (isEmpty(s)) {
             throw new IllegalArgumentException("String must not be empty");
         }
         s = s.replace(",", ".");
@@ -21,22 +21,22 @@ public class SeparatedSum {
                 } else {
                     sumNeg += toAdd;
                 }
-            }catch (NumberFormatException nfe){
+            } catch (NumberFormatException nfe) {
 
             }
         }
-        double factor = Math.pow(10,howLong(s));
-        sumNeg = Math.round(sumNeg*factor)/factor;
-        return new SumResults(sumPos,sumNeg);
+        double factor = Math.pow(10, howLong(s));
+        sumNeg = Math.round(sumNeg * factor) / factor;
+        return new SumResults(sumPos, sumNeg);
     }
 
     private int howLong(String s) {
-        s = s.replace("-","");
+        s = s.replace("-", "");
         int size = 0;
         Scanner scanner = new Scanner(s).useDelimiter(";");
         while (scanner.hasNext()) {
             int search = scanner.next().length();
-            if(size<search){
+            if (size < search) {
                 size = search;
             }
         }

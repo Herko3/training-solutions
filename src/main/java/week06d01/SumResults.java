@@ -2,8 +2,8 @@ package week06d01;
 
 public class SumResults {
 
-    private double positive;
-    private double negative;
+    private final double positive;
+    private final double negative;
 
     public SumResults(double positive, double negative) {
         this.positive = positive;
