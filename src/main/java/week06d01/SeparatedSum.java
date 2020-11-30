@@ -14,7 +14,7 @@ public class SeparatedSum {
         double sumNeg = 0;
         while (scanner.hasNext()) {
             try {
-                double toAdd = Double.valueOf(scanner.next());
+                double toAdd = Double.parseDouble(scanner.next());
 
                 if (toAdd > 0) {
                     sumPos += toAdd;
@@ -35,9 +35,9 @@ public class SeparatedSum {
         int size = 0;
         Scanner scanner = new Scanner(s).useDelimiter(";");
         while (scanner.hasNext()) {
-            int search = scanner.next().length();
-            if (size < search) {
-                size = search;
+            int current = scanner.next().length();
+            if (size < current) {
+                size = current;
             }
         }
         return size;
