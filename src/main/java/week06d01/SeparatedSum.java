@@ -22,7 +22,7 @@ public class SeparatedSum {
                     sumNeg += toAdd;
                 }
             } catch (NumberFormatException nfe) {
-
+                break;
             }
         }
         double factor = Math.pow(10, howLong(s));
