@@ -8,14 +8,14 @@ public class Store {
     private List<Product> products = new ArrayList<>();
 
     public Store(List<Product> products) {
+        if (products == null) {
+            throw new IllegalArgumentException("The list must not be empty");
+        }
+
         this.products = products;
     }
 
     public NumberOfProducts getProductsByCategory() {
-        if (products == null || products.size() == 0) {
-            throw new IllegalArgumentException("There is no item in the store");
-        }
-
         int dairy = 0;
         int other = 0;
         int baked = 0;
@@ -39,7 +39,6 @@ public class Store {
         }
         return new NumberOfProducts(frozen, other, dairy, baked);
     }
-
 
 
 }
