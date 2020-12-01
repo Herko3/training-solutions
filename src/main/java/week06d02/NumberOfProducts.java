@@ -2,10 +2,10 @@ package week06d02;
 
 public class NumberOfProducts {
 
-    private int numberOfFrozen;
-    private int numberOfOther;
-    private int numberOfDairy;
-    private int numberOfBakedgoods;
+    private final int numberOfFrozen;
+    private final int numberOfOther;
+    private final int numberOfDairy;
+    private final int numberOfBakedgoods;
 
     public NumberOfProducts(int numberOfFrozen, int numberOfOther, int numberOfDairy, int numberOfBakedgoods) {
         this.numberOfFrozen = numberOfFrozen;
