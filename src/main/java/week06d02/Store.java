@@ -40,5 +40,15 @@ public class Store {
         return new NumberOfProducts(frozen, other, dairy, baked);
     }
 
+    public List<Product> getProductsOfTheCategory(Category category){
+        List<Product> found = new ArrayList<>();
+        for(Product product : products){
+            if(product.getCategory().equals(category)){
+                found.add(product);
+            }
+        }
+        return found;
+    }
+
 
 }
