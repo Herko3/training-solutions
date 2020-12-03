@@ -37,6 +37,9 @@ public class ShoppingBasket {
     }
 
     public void removeMostExpensiveItem() {
+        if(basket.getItems().size() == 0){
+
+        }
         Item expensive = null;
         double price = 0;
         for (Item item : basket.getItems()) {
