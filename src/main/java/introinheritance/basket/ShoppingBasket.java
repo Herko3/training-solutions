@@ -42,6 +42,7 @@ public class ShoppingBasket {
         for (Item item : basket.getItems()) {
             if (price < (item.getNettoPrice() + item.getTaxAmount())) {
                 expensive = item;
+                price = item.getNettoPrice() + item.getTaxAmount();
             }
         }
         removeItem(expensive.getBarcode());
