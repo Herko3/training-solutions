@@ -9,15 +9,15 @@ public class Bottle {
         this.type = type;
     }
 
-    public static Bottle of(BottleType type){
+    public static Bottle of(BottleType type) {
         return new Bottle(type);
     }
 
-    public void fill(int fillAmount){
-        if(filledUntil+fillAmount>type.getMaximumAmount()){
+    public void fill(int fillAmount) {
+        if (filledUntil + fillAmount > type.getMaximumAmount()) {
             throw new IllegalArgumentException("The bottle can't hold that much");
         }
-        filledUntil +=fillAmount;
+        filledUntil += fillAmount;
     }
 
     public BottleType getType() {

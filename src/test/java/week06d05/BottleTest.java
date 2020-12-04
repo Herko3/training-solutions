@@ -22,4 +22,14 @@ class BottleTest {
         assertEquals(BottleType.PET_BOTTLE,pet.getType());
         assertEquals(150,pet.getFilledUntil());
     }
+
+    @Test
+    public void testException(){
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> pet.fill(1000));
+        assertEquals("The bottle can't hold that much",ex.getMessage());
+
+        Exception ex2 = assertThrows(IllegalArgumentException.class, () -> glass.fill(1000));
+        assertEquals("The bottle can't hold that much",ex2.getMessage());
+
+    }
 }
