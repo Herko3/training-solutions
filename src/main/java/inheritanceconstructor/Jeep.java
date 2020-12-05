@@ -16,19 +16,20 @@ public class Jeep extends Car {
     }
 
     public void modifyFuelAmount(double fuel) {
+        fuel = -fuel;
         if (fuel <= extraFuel) {
             extraFuel -= fuel;
             return;
         }
         fuel -= extraFuel;
         extraFuel = 0;
-        super.modifyFuelAmount(fuel);
+        super.modifyFuelAmount(-fuel);
     }
 
     public void drive(int km) {
         double usedFuel = km / 100D * getFuelRate();
         isLess(usedFuel);
-        modifyFuelAmount(usedFuel);
+        modifyFuelAmount(-usedFuel);
     }
 
     public double calculateRefillAmount() {

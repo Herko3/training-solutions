@@ -16,13 +16,13 @@ public class Car {
     }
 
     public void modifyFuelAmount(double fuel) {
-        this.fuel -= Math.abs(fuel);
+        this.fuel += fuel;
     }
 
     public void drive(int km) {
         double usedFuel = km / 100D * fuelRate;
         isLess(usedFuel);
-        modifyFuelAmount(usedFuel);
+        modifyFuelAmount(-usedFuel);
     }
 
     public double calculateRefillAmount() {
