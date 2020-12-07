@@ -9,8 +9,8 @@ public class Fibonacci {
 
     public long fib(int n) {
         fibo[1] = 1L;
-        if (n == 0) {
-            return 0;
+        if (n < 1) {
+            throw new IllegalArgumentException("The series starts with an index of 1");
         }
         int index = 1;
         while (index != n) {
