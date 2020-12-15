@@ -12,14 +12,14 @@ class CountryStatisticsTest {
     public void testMaxPopulation(){
         stats.init("countries.txt");
 
-        assertEquals("Kongoi_Demokratikus_Koztarsasag 79 3 9",stats.maxPopulation());
+        assertEquals("Kongoi_Demokratikus_Koztarsasag",stats.maxPopulation().getName());
     }
 
     @Test
     public void testInit(){
         stats.init("countries.txt");
 
-        assertEquals(11,stats.getStatistics().size());
+        assertEquals(11,stats.getCountries().size());
     }
 
 }
