@@ -106,12 +106,4 @@ public class ResultCalculator {
     public List<Vote> getVotes() {
         return new ArrayList<>(votes);
     }
-
-    public static void main(String[] args) {
-        ResultCalculator rc = new ResultCalculator();
-        rc.readTalents(Path.of("src/test/resources/ioprintwriter.talentshow/talents.txt"));
-        System.out.println(rc.getProductions().size());
-        System.out.println(rc.getProductions().get(5).getId());
-    }
-
 }
