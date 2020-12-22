@@ -9,7 +9,7 @@ class FibCalculatorTest {
     FibCalculator fib = new FibCalculator();
 
     @Test
-    public void testSumEvents(){
+    public void testSumEvens(){
         assertEquals(0,fib.sumEvens(1));
         assertEquals(2,fib.sumEvens(3));
         assertEquals(2,fib.sumEvens(4));
