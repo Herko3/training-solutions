@@ -2,7 +2,6 @@ package week09.d03;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class SantaClaus {
 
@@ -16,5 +15,9 @@ public class SantaClaus {
         for (Person person : persons){
             person.setPresent();
         }
+    }
+
+    public List<Person> getPersons() {
+        return new ArrayList<>(persons);
     }
 }

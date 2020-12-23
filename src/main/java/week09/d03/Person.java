@@ -20,4 +20,16 @@ public class Person {
             setPresent();
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Present getPresent() {
+        return present;
+    }
 }
