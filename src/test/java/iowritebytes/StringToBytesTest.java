@@ -1,4 +1,4 @@
-package iowritevytes;
+package iowritebytes;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
