@@ -9,18 +9,23 @@ public class CatalogItem {
     private final int price;
     private final String registrationNumber;
 
-    public CatalogItem(String registrationNumber, int price, List<Feature> features) {
-        this.features = features;
+    public CatalogItem(String registrationNumber, int price, Feature... features) {
+        for(Feature feature : features){
+            this.features.add(feature);
+        }
         this.price = price;
         this.registrationNumber = registrationNumber;
     }
 
-//    public int fullLengthAtOneItem(){
-//        int length = 0;
-//        for(Feature feature : features){
-//
-//        }
-//    }
+    public int fullLengthAtOneItem(){
+        int sum = 0;
+        for(Feature feature : features){
+            if(feature instanceof AudioFeatures){
+                sum += ((AudioFeatures) feature).getLength();
+            }
+        }
+        return sum;
+    }
 
     public List<String> getContributors(){
         List<String> contributor = new ArrayList<>();
@@ -56,9 +61,15 @@ public class CatalogItem {
         return false;
     }
 
-//    public int numberOfPagesAtOneItem(){
-//
-//    }
+    public int numberOfPagesAtOneItem(){
+        int sum = 0;
+        for (Feature feature : features){
+            if(feature instanceof PrintedFeatures){
+                sum += ((PrintedFeatures) feature).getNumberOfPages();
+            }
+        }
+        return sum;
+    }
 
     public List<Feature> getFeatures() {
         return new ArrayList<>(features);
