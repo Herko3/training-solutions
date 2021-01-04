@@ -2,19 +2,19 @@ package week10.d01;
 
 public class Hiking {
 
-    private int ascend;
-    private int descend;
+    private double ascend;
+    private double descend;
 
-    public Hiking(int ascend, int descend) {
+    public Hiking(double ascend, double descend) {
         this.ascend = ascend;
         this.descend = descend;
     }
 
-    public int getAscend() {
+    public double getAscend() {
         return ascend;
     }
 
-    public int getDescend() {
+    public double getDescend() {
         return descend;
     }
 }

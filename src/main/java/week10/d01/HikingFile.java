@@ -8,14 +8,14 @@ import java.util.List;
 
 public class HikingFile {
 
-    private List<Integer> elevations = new ArrayList<>();
+    private List<Double> elevations = new ArrayList<>();
 
     public Hiking getElevation(String fileName) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(HikingFile.class.getResourceAsStream(fileName)))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(", ");
-                elevations.add(Integer.parseInt(parts[2]));
+                elevations.add(Double.parseDouble(parts[2]));
             }
         } catch (IOException ioe) {
             throw new IllegalStateException("Cannot read file", ioe);
@@ -26,17 +26,17 @@ public class HikingFile {
     }
 
     private Hiking getAttributes() {
-        int ascend = 0;
-        int descend = 0;
-        int previous = elevations.get(0);
-        for (int i : elevations) {
-            if (i < previous) {
-                descend += previous - i;
+        double ascend = 0;
+        double descend = 0;
+        double previous = elevations.get(0);
+        for (double elevate : elevations) {
+            if (elevate < previous) {
+                descend += previous - elevate;
             }
-            if (i > previous) {
-                ascend += i - previous;
+            if (elevate > previous) {
+                ascend += elevate - previous;
             }
-            previous = i;
+            previous = elevate;
         }
         return new Hiking(ascend, descend);
     }
