@@ -16,7 +16,6 @@ public class Cv {
         try {
             for (String skill : skillsAsString) {
                 String parts[] = skill.split(" \\(");
-                String name = parts[0].substring(0, parts[0].length() - 1);
                 int level = Integer.parseInt(parts[1].substring(0, 1));
                 skills.add(new Skill(parts[0], level));
             }
