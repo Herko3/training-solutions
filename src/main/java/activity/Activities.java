@@ -18,8 +18,14 @@ public class Activities {
     public List<Report> distancesByTypes() {
         List<Report> reports = new ArrayList<>();
         for(Activity activity : activities){
-
+           ActivityType type = activity.getType();
+           double distance = type.getDistance() + activity.getDistance();
+           type.setDistance(distance);
         }
+        for(ActivityType type : ActivityType.values()){
+            reports.add(new Report(type,type.getDistance()));
+        }
+
         return reports;
     }
 
