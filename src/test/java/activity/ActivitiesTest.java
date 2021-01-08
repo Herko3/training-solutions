@@ -36,7 +36,7 @@ class ActivitiesTest {
         track.addTrackPoint(new TrackPoint(new Coordinate(3.67, -42.789), 200));
 
         List<Report> result = activities.distancesByTypes();
-
+        result = activities.distancesByTypes();
         assertEquals(0.0, result.get(1).getDistance());
 
         assertEquals(0.0, result.get(0).getDistance());

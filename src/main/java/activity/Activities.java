@@ -16,6 +16,7 @@ public class Activities {
     }
 
     public List<Report> distancesByTypes() {
+        setTypesDistanceToZero();
         List<Report> reports = new ArrayList<>();
         for(Activity activity : activities){
            ActivityType type = activity.getType();
@@ -47,5 +48,11 @@ public class Activities {
             }
         }
         return counter;
+    }
+
+    private void setTypesDistanceToZero(){
+        for(ActivityType type : ActivityType.values()){
+            type.setDistance(0);
+        }
     }
 }
