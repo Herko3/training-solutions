@@ -2,6 +2,7 @@ package week11.d04;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +13,7 @@ class NameLengthTest {
     public void testMethod() {
         NameLength nameLength = new NameLength();
         List<Integer> result = nameLength.getLengths(List.of("Joe", "Jack", "Jane", "George", "William"));
+        Collections.sort(result);
 
         List<Integer> expected = List.of(3,4);
         assertEquals(2, result.size());

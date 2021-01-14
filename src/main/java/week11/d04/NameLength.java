@@ -8,9 +8,13 @@ import java.util.TreeSet;
 public class NameLength {
 
     public List<Integer> getLengths(List<String> names) {
+        if(names == null || names.isEmpty()){
+            throw new IllegalArgumentException("Names list must not be null nor empty");
+        }
+
         Set<Integer> result = new TreeSet<>();
         for (String name : names) {
-            if(name.startsWith("J")){
+            if(name != null && name.toUpperCase().startsWith("J")){
                 result.add(name.length());
             }
         }
