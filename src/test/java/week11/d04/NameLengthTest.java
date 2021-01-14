@@ -13,7 +13,8 @@ class NameLengthTest {
         NameLength nameLength = new NameLength();
         List<Integer> result = nameLength.getLengths(List.of("Joe", "Jack", "Jane", "George", "William"));
 
+        List<Integer> expected = List.of(3,4);
         assertEquals(2, result.size());
-        assertEquals("[3, 4]", result.toString());
+        assertEquals(expected, result);
     }
 }
