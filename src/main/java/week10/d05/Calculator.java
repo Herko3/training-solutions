@@ -8,8 +8,8 @@ public class Calculator {
         Arrays.sort(arr);
         if (arr.length < 4) {
             int sum = 0;
-            for (int i = 0; i < arr.length; i++) {
-                sum += arr[i];
+            for (int i : arr) {
+                sum += i;
             }
             return new int[]{sum, sum};
         }
