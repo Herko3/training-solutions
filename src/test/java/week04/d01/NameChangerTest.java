@@ -1,7 +1,6 @@
-package week04;
+package week04.d01;
 
 import org.junit.jupiter.api.Test;
-import stringconcat.Name;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
