@@ -1,4 +1,4 @@
-package finalmodifer;
+package finalmodifier;
 
 public class PiMain {
     public static void main(String[] args) {

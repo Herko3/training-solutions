@@ -1,4 +1,4 @@
-package finalmodifer;
+package finalmodifier;
 
 public class Gentleman {
     private static final String MESSAGE_PREFIX = "Üdv itt ";
