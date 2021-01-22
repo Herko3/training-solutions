@@ -15,7 +15,7 @@ public class Employee {
         this.age = age;
         this.skillLevel = skillLevel;
         this.name = name;
-        this.skills = skills;
+        this.skills = new ArrayList<>(skills);
     }
 
     public int getAge() {
