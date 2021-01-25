@@ -10,7 +10,7 @@ class ShoppingListTest {
     public void testSum(){
         ShoppingList shoppingList = new ShoppingList();
 
-        assertEquals(120L,shoppingList.calculateSum("src/main/resources/week07d04/Shop"));
+        assertEquals(120L,shoppingList.calculateSum("src/main/resources/week07/d04/shop.txt"));
     }
 
 }
