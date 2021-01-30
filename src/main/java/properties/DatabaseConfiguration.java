@@ -1,17 +1,22 @@
 package properties;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Properties;
-import java.util.Set;
 
 public class DatabaseConfiguration {
 
     Properties properties = new Properties();
 
     public DatabaseConfiguration() {
+        InputStream is = this.getClass().getResourceAsStream("db.properties");
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+            properties.load(reader);
+        } catch (IOException ioe) {
+            throw new IllegalArgumentException("Cannot read file");
+        }
     }
 
     public DatabaseConfiguration(File file) {
@@ -25,36 +30,15 @@ public class DatabaseConfiguration {
     }
 
     public String getHost() {
-        Set<String> keys = properties.stringPropertyNames();
-        String defaultKey = "host";
-        for (String key : keys) {
-            if (key.contains(defaultKey)) {
-                return properties.getProperty(key);
-            }
-        }
-        return properties.getProperty(defaultKey, "localhost");
+        return properties.getProperty("db.host");
     }
 
     public int getPort() {
-        Set<String> keys = properties.stringPropertyNames();
-        String defaultKey = "port";
-        for (String key : keys) {
-            if (key.contains(defaultKey)) {
-                return Integer.parseInt(properties.getProperty(key));
-            }
-        }
-        String port = properties.getProperty(defaultKey, "1021");
+        String port = properties.getProperty("db.port");
         return Integer.parseInt(port);
     }
 
     public String getSchema() {
-        Set<String> keys = properties.stringPropertyNames();
-        String defaultKey = "schema";
-        for (String key : keys) {
-            if (key.contains(defaultKey)) {
-                return properties.getProperty(key);
-            }
-        }
-        return properties.getProperty(defaultKey, "árvíztűrő");
+        return properties.getProperty("db.schema");
     }
 }
