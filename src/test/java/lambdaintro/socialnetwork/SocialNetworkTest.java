@@ -73,4 +73,16 @@ class SocialNetworkTest {
         assertEquals("James Doe", names.get(2));
     }
 
+    @Test
+    public void testTransformMembers2() {
+        SocialNetwork socialNetwork = new SocialNetwork(Arrays.asList(
+                new Member("John Doe", Arrays.asList("Java", "OOP"), Sex.MALE),
+                new Member("Jane Doe", Arrays.asList(".NET", "OOP", "db"), Sex.FEMALE),
+                new Member("James Doe", Arrays.asList("Python", "Java", "OOP"), Sex.MALE)));
+        List<Sex> genders = socialNetwork.transformMembers(Member::getGender);
+        assertEquals(3, genders.size());
+        assertEquals(Sex.MALE, genders.get(0));
+        assertEquals(Sex.FEMALE, genders.get(1));
+    }
+
 }
