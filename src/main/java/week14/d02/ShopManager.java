@@ -50,7 +50,11 @@ public class ShopManager {
     }
 
     public int getPriceById(String id) {
-        return map.values().stream().flatMap(Collection::stream).filter(s->s.getId().equals(id)).reduce(0,(i, s) -> i + s.sumPrice(), Integer::sum);
+        return map.values().stream()
+                .flatMap(Collection::stream)
+                .filter(s -> s.getId().equals(id))
+                .reduce(0, (i, s) -> i + s.sumPrice(), Integer::sum);
+
 //        for (Map.Entry<String, List<Shopping>> entry : map.entrySet()) {
 //            for (Shopping shopping : entry.getValue()) {
 //                if (shopping.getId().equals(id)) {
@@ -67,7 +71,13 @@ public class ShopManager {
     }
 
     public List<Product> sortedBy(String name, String shopId, Comparator<Product> comp) {
-        return map.get(name).stream().filter(s -> s.getId().equals(shopId)).map(Shopping::getProducts).flatMap(l -> l.stream().sorted(comp)).collect(Collectors.toList());
+        return map.get(name).stream()
+                .filter(s -> s.getId().equals(shopId))
+                .map(Shopping::getProducts)
+                .flatMap(l -> l.stream())
+                .sorted(comp)
+                .collect(Collectors.toList());
+
 //        List<Product> result;
 //        for (Shopping shopping : map.get(name)) {
 //            if (shopping.getId().equals(shopId)) {
@@ -84,7 +94,11 @@ public class ShopManager {
     }
 
     public Map<String, Long> statistics() {
-        return map.values().stream().flatMap(Collection::stream).map(Shopping::getProducts).flatMap(l->l.stream()).collect(Collectors.groupingBy(Product::getName,Collectors.counting()));
+        return map.values().stream()
+                .flatMap(Collection::stream)
+                .map(Shopping::getProducts)
+                .flatMap(l -> l.stream())
+                .collect(Collectors.groupingBy(Product::getName, Collectors.counting()));
 
 //        Map<String, Integer> result = new HashMap<>();
 //        for (Map.Entry<String, List<Shopping>> entry : map.entrySet()) {
