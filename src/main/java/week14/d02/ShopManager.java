@@ -74,7 +74,7 @@ public class ShopManager {
         return map.get(name).stream()
                 .filter(s -> s.getId().equals(shopId))
                 .map(Shopping::getProducts)
-                .flatMap(l -> l.stream())
+                .flatMap(Collection::stream)
                 .sorted(comp)
                 .collect(Collectors.toList());
 
@@ -97,7 +97,7 @@ public class ShopManager {
         return map.values().stream()
                 .flatMap(Collection::stream)
                 .map(Shopping::getProducts)
-                .flatMap(l -> l.stream())
+                .flatMap(Collection::stream)
                 .collect(Collectors.groupingBy(Product::getName, Collectors.counting()));
 
 //        Map<String, Integer> result = new HashMap<>();
