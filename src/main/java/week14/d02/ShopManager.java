@@ -2,10 +2,16 @@ package week14.d02;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ShopManager {
+
+    public static final String SEPARATOR = ": ";
+    public static final String ID_SEPARATOR = "-";
+    public static final String PRODUCT_SEPARATOR = ",";
+    public static final String PRICE_START = "(";
+    public static final String PRICE_END = ")";
 
     Map<String, List<Shopping>> map = new HashMap<>();
 
@@ -13,37 +19,46 @@ public class ShopManager {
         try (reader) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(": ");
-                String[] id = parts[0].split("-");
+                String[] parts = line.split(SEPARATOR);
+                String[] id = parts[0].split(ID_SEPARATOR);
                 String shopperID = id[0];
                 String shopID = id[1];
-                String[] shopping = parts[1].split(",");
-                List<Product> products = new ArrayList<>();
-                for (String s : shopping) {
-                    String product = s.substring(0, s.indexOf("("));
-                    String price = s.substring(s.indexOf("(") + 1, s.indexOf(")"));
-                    products.add(new Product(product, Integer.parseInt(price)));
-                }
-                Shopping actual = new Shopping(shopID, products);
-                if (!map.containsKey(shopperID)) {
-                    map.put(shopperID, new ArrayList<>());
-                }
-                map.get(shopperID).add(actual);
+                List<Product> products = getProducts(parts[1].split(PRODUCT_SEPARATOR));
+                mapping(shopperID, new Shopping(shopID, products));
             }
+
         } catch (IOException ioe) {
             throw new IllegalStateException("Cannot read file", ioe);
         }
     }
 
-    public int getPriceById(String id) {
-        for (Map.Entry<String, List<Shopping>> entry : map.entrySet()) {
-            for (Shopping shopping : entry.getValue()) {
-                if (shopping.getId().equals(id)) {
-                    return shopping.sumPrice();
-                }
-            }
+    private void mapping(String shopperID, Shopping toPut) {
+        if (!map.containsKey(shopperID)) {
+            map.put(shopperID, new ArrayList<>());
         }
-        throw new IllegalArgumentException("No data");
+        map.get(shopperID).add(toPut);
+    }
+
+    private List<Product> getProducts(String[] shopping) {
+        List<Product> products = new ArrayList<>();
+        for (String s : shopping) {
+            String product = s.substring(0, s.indexOf(PRICE_START));
+            String price = s.substring(s.indexOf(PRICE_START) + 1, s.indexOf(PRICE_END));
+            products.add(new Product(product, Integer.parseInt(price)));
+        }
+        return products;
+    }
+
+    public int getPriceById(String id) {
+        return map.values().stream().flatMap(Collection::stream).filter(s->s.getId().equals(id)).reduce(0,(i, s) -> i + s.sumPrice(), Integer::sum);
+//        for (Map.Entry<String, List<Shopping>> entry : map.entrySet()) {
+//            for (Shopping shopping : entry.getValue()) {
+//                if (shopping.getId().equals(id)) {
+//                    return shopping.sumPrice();
+//                }
+//            }
+//        }
+//        throw new IllegalArgumentException("No data");
     }
 
     public int getPriceByShopper(String shopperId) {
@@ -52,57 +67,38 @@ public class ShopManager {
     }
 
     public List<Product> sortedBy(String name, String shopId, Comparator<Product> comp) {
-//        List<Product> products = map.get(name).stream().filter(s -> s.getId().equals(shopId)).map(s->s.getProducts());
-        List<Product> result;
-        for (Shopping shopping : map.get(name)) {
-            if (shopping.getId().equals(shopId)) {
-                result = new ArrayList<>(shopping.getProducts());
-                result.sort(comp);
-                return result;
-            }
-        }
-
-        throw new IllegalArgumentException("No data");
+        return map.get(name).stream().filter(s -> s.getId().equals(shopId)).map(Shopping::getProducts).flatMap(l -> l.stream().sorted(comp)).collect(Collectors.toList());
+//        List<Product> result;
+//        for (Shopping shopping : map.get(name)) {
+//            if (shopping.getId().equals(shopId)) {
+//                result = new ArrayList<>(shopping.getProducts());
+//                result.sort(comp);
+//                return result;
+//            }
+//        }
+//        throw new IllegalArgumentException("No data");
     }
 
     public int numberBought(String name) {
-        int sum = 0;
-        for (Map.Entry<String, List<Shopping>> entry : map.entrySet()) {
-            for (Shopping shopping : entry.getValue()) {
-                for (Product product : shopping.getProducts()) {
-                    if (product.getName().equals(name)) {
-                        sum++;
-                    }
-                }
-            }
-        }
-        return sum;
+        return statistics().get(name).intValue();
     }
 
-    public Map<String, Integer> statistics() {
-        Map<String, Integer> result = new HashMap<>();
-        for (Map.Entry<String, List<Shopping>> entry : map.entrySet()) {
-            for (Shopping shopping : entry.getValue()) {
-                for (Product product : shopping.getProducts()) {
-                    result.put(product.getName(), numberBought(product.getName()));
-                }
-            }
-        }
-        return result;
+    public Map<String, Long> statistics() {
+        return map.values().stream().flatMap(Collection::stream).map(Shopping::getProducts).flatMap(l->l.stream()).collect(Collectors.groupingBy(Product::getName,Collectors.counting()));
+
+//        Map<String, Integer> result = new HashMap<>();
+//        for (Map.Entry<String, List<Shopping>> entry : map.entrySet()) {
+//            for (Shopping shopping : entry.getValue()) {
+//                for (Product product : shopping.getProducts()) {
+//                    if (!result.containsKey(product.getName())) {
+//                        result.put(product.getName(), 1);
+//                    } else {
+//                        int sum = result.get(product.getName()) + 1;
+//                        result.put(product.getName(), sum);
+//                    }
+//                }
+//            }
+//        }
+//        return result;
     }
-
-
-    public static void main(String[] args) {
-        ShopManager test = new ShopManager();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(ShopManager.class.getResourceAsStream("shoppinglist.txt")));
-        test.readFile(reader);
-        System.out.println(test.getPriceByShopper("BK123"));
-        System.out.println(test.getPriceById("1211"));
-        System.out.println(test.sortedBy("BK123", "1211", Comparator.comparing(Product::getName)));
-        System.out.println(test.sortedBy("BK123", "1211", Comparator.comparing(Product::getPrice)));
-        System.out.println(test.numberBought("beer"));
-        Map<String, Integer> map = test.statistics();
-        System.out.println(map.get("beer"));
-    }
-
 }
