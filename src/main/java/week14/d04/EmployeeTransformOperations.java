@@ -8,7 +8,7 @@ public class EmployeeTransformOperations {
 
     public List<Employee> transformToUppercased (List<Employee> employees){
        return employees.stream()
-                .map(e -> e.convert(e))
+                .map(Employee::convert)
                 .collect(Collectors.toList());
     }
 

@@ -8,8 +8,8 @@ public class Employee {
         this.name = name;
     }
 
-    public Employee convert(Employee e){
-        return new Employee(e.name.toUpperCase());
+    public Employee convert(){
+        return new Employee(name.toUpperCase());
     }
 
     public String getName() {
