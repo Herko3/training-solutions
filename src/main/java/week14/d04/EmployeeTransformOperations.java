@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Converter {
+public class EmployeeTransformOperations {
 
     public List<Employee> transformToUppercased (List<Employee> employees){
        return employees.stream()
@@ -18,7 +18,7 @@ public class Converter {
           new Employee("Pete")
         );
 
-        System.out.println(new Converter().transformToUppercased(list));
+        System.out.println(new EmployeeTransformOperations().transformToUppercased(list));
         System.out.println(list);
     }
 
