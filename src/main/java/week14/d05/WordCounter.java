@@ -14,7 +14,7 @@ public class WordCounter {
             counted = stream
                     .filter(line -> line.contains(word))
                     .flatMap(s -> Arrays.stream(s.split(" ")))
-                    .filter(s->s.contains(word))
+                    .filter(s -> s.contains(word))
                     .count();
 
         } catch (IOException ioe) {
