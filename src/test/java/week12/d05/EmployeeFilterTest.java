@@ -1,7 +1,6 @@
 package week12.d05;
 
 import org.junit.jupiter.api.Test;
-import week12.d05.Junior.CoronavirusCounter;
 
 import java.util.Arrays;
 import java.util.List;
