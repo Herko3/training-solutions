@@ -13,7 +13,7 @@ class WordCounterTest {
         WordCounter wc = new WordCounter();
         Path path = Path.of("src/main/resources/week14/d05/hachiko.srt");
 
-        assertEquals(83,wc.countWords(path,"Hachi"));
+        assertEquals(87,wc.countWords(path,"Hachi"));
     }
 
 }
