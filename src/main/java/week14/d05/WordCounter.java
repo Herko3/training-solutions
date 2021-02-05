@@ -8,12 +8,13 @@ import java.util.stream.Stream;
 
 public class WordCounter {
 
+
     public long countWords(Path path, String word) {
         long counted;
         try (Stream<String> stream = Files.lines(path)) {
             counted = stream
                     .filter(line -> line.contains(word))
-                    .flatMap(s -> Arrays.stream(s.split(" ")))
+                    .flatMap(WordCounter::lineToWorlds)
                     .filter(s -> s.contains(word))
                     .count();
 
@@ -23,4 +24,7 @@ public class WordCounter {
         return counted;
     }
 
+    private static Stream<? extends String> lineToWorlds(String line) {
+        return Arrays.stream(line.split(" "));
+    }
 }
