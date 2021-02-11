@@ -25,7 +25,7 @@ public class TransactionExecutorTest {
     TransactionExecutor test = new TransactionExecutor();
 
     @Test
-    public void testExecuteBankAccountCredit() {
+    void testExecuteBankAccountCredit() {
 
         test.executeTransactions(transactions, accounts);
         assertEquals(2100, accounts.get(0).getBalance());
@@ -33,7 +33,7 @@ public class TransactionExecutorTest {
     }
 
     @Test
-    public void testExecuteBankAccountDebitWithDrawOk() {
+    void testExecuteBankAccountDebitWithDrawOk() {
 
         test.executeTransactions(transactions, accounts);
         assertEquals(1800, accounts.get(1).getBalance());
@@ -41,7 +41,7 @@ public class TransactionExecutorTest {
     }
 
     @Test
-    public void testExecuteBankAccountDebitWithDrawNotOk() {
+    void testExecuteBankAccountDebitWithDrawNotOk() {
 
         test.executeTransactions(transactions, accounts);
         assertEquals(90, accounts.get(2).getBalance());

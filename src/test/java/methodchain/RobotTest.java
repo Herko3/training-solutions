@@ -11,17 +11,17 @@ public class RobotTest {
     private Robot robot;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.robot = new Robot();
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         this.robot = null;
     }
 
     @Test
-    public void testGoAndRotate() {
+    void testGoAndRotate() {
         //When
         robot.go(5).go(10).rotate(30);
         //Then
@@ -30,7 +30,7 @@ public class RobotTest {
     }
 
     @Test
-    public void testRotate() {
+    void testRotate() {
         //When
         robot.rotate(45).rotate(45).rotate(-90);
         //Then
@@ -39,7 +39,7 @@ public class RobotTest {
 
     //Bónusz feladat tesztje, kommentezd ki az alapfeladathoz
     @Test
-    public void testNavigationChain() {
+    void testNavigationChain() {
         //When
         robot.go(5).rotate(45).registerNavigationPoint().go(10).rotate(-15).registerNavigationPoint();
         //Then
