@@ -11,10 +11,9 @@ public class VowelFilter {
         StringBuilder sb = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
-            for (int i = 0; i < line.length(); i++) {
-                String s = line.substring(i, i + 1);
-                if (!VOWELS.contains(s)) {
-                    sb.append(s);
+            for (char c: line.toCharArray()) {
+                if (!VOWELS.contains(String.valueOf(c))) {
+                    sb.append(c);
                 }
             }
             sb.append("\n");
