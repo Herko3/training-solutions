@@ -2,7 +2,9 @@ package exam03;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -83,8 +85,8 @@ class CruiseTest {
         cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
         cruise.bookPassenger(new Passenger("Jack Doe", CruiseClass.FIRST));
 
-        Map<CruiseClass, Integer> result = cruise.countPassengerByClass();
-        assertEquals(Map.of(CruiseClass.LUXURY, 2 , CruiseClass.FIRST, 1), result);
+        Map<CruiseClass, Long> result = cruise.countPassengerByClass();
+        assertEquals(Map.of(CruiseClass.LUXURY, 2L , CruiseClass.FIRST, 1L), result);
     }
 
 }
