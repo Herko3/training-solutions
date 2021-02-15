@@ -1,7 +1,7 @@
 package week15.d04;
 
 public enum CharType {
-    VOWEL("aeioóöőuúüű"),CONSONANT(""),OTHER("");
+    VOWEL("aáeéiíoóöőuúüű"),CONSONANT("qwrtzpsdfghjklyxcvbnm"),OTHER("");
 
     private String chars;
 
@@ -9,7 +9,13 @@ public enum CharType {
         this.chars = chars;
     }
 
-    public CharType getType(){
-        return null;
+    public static CharType getType(int c){
+        if(CharType.VOWEL.chars.contains(String.valueOf((char) c))){
+            return CharType.VOWEL;
+        }
+        if(CharType.CONSONANT.chars.contains(String.valueOf((char) c))){
+            return CharType.CONSONANT;
+        }
+        return CharType.OTHER;
     }
 }
