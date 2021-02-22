@@ -19,12 +19,12 @@ public class MailBox {
         List<Mail> result = new ArrayList<>();
 
         if (criteria.startsWith("from:")) {
-            result = criteriaWithFrom(criteria.substring(5));
+            return criteriaWithFrom(criteria.substring(5));
 
         }
 
         if (criteria.startsWith("to:")) {
-            result = criteriaWithTo(criteria.substring(3));
+            return criteriaWithTo(criteria.substring(3));
         }
 
         for (Mail mail : mails) {
