@@ -2,6 +2,7 @@ package exam03retake01;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MailBox {
 
@@ -19,20 +20,26 @@ public class MailBox {
         List<Mail> result = new ArrayList<>();
 
         if (criteria.startsWith("from:")) {
-            return criteriaWithFrom(criteria.substring(5));
-
+            return mails.stream()
+                    .filter(mail -> mail.fromFilter(criteria.substring(5)))
+                    .collect(Collectors.toList());
+//            return criteriaWithFrom(criteria.substring(5));
         }
 
         if (criteria.startsWith("to:")) {
             return criteriaWithTo(criteria.substring(3));
         }
 
-        for (Mail mail : mails) {
-            if (mail.getSubject().contains(criteria) || mail.getMessage().contains(criteria)) {
-                result.add(mail);
-            }
-        }
-        return result;
+        return mails.stream()
+                .filter(m -> m.messageOrSubjectFilter(criteria))
+                .collect(Collectors.toList());
+
+//        for (Mail mail : mails) {
+//            if (mail.getSubject().contains(criteria) || mail.getMessage().contains(criteria)) {
+//                result.add(mail);
+//            }
+//        }
+//        return result;
     }
 
     private List<Mail> criteriaWithFrom(String criteria) {

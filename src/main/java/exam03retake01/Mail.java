@@ -31,4 +31,12 @@ public class Mail {
     public String getMessage() {
         return message;
     }
+
+    public boolean fromFilter(String criteria){
+        return from.criteriaFilter(criteria);
+    }
+
+    public boolean messageOrSubjectFilter(String criteria){
+        return subject.contains(criteria) || message.contains(criteria);
+    }
 }

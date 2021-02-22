@@ -17,4 +17,8 @@ public class Contact {
     public String getEmail() {
         return email;
     }
+
+    public boolean criteriaFilter(String criteria){
+        return name.equals(criteria) || email.equals(criteria);
+    }
 }
