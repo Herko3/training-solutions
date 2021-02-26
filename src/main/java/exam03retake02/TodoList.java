@@ -3,6 +3,7 @@ package exam03retake02;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TodoList {
 
@@ -23,15 +24,18 @@ public class TodoList {
     }
 
     public List<String> getMostImportantTodosText() {
-        List<String> result = new ArrayList<>();
+//        List<String> result = new ArrayList<>();
         Collections.sort(todos);
         int lowestPriority = todos.get(0).getPriority();
-        for (Todo todo : todos) {
-            if (todo.getPriority() == lowestPriority) {
-                result.add(todo.getText());
-            }
-        }
-        return result;
+//        for (Todo todo : todos) {
+//            if (todo.getPriority() == lowestPriority) {
+//                result.add(todo.getText());
+//            }
+//        }
+        return todos.stream()
+                .filter(todo -> todo.getPriority() == lowestPriority)
+                .map(todo -> todo.getText())
+                .collect(Collectors.toList());
     }
 
     public void deleteCompleted() {
