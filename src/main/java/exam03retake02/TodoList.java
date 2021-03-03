@@ -25,8 +25,8 @@ public class TodoList {
 
     public List<String> getMostImportantTodosText() {
 //        List<String> result = new ArrayList<>();
-        Collections.sort(todos);
-        int lowestPriority = todos.get(0).getPriority();
+//        Collections.sort(todos);
+        int lowestPriority = todos.stream().mapToInt(Todo::getPriority).min().getAsInt();
 //        for (Todo todo : todos) {
 //            if (todo.getPriority() == lowestPriority) {
 //                result.add(todo.getText());
@@ -34,11 +34,11 @@ public class TodoList {
 //        }
         return todos.stream()
                 .filter(todo -> todo.getPriority() == lowestPriority)
-                .map(todo -> todo.getText())
+                .map(Todo::getText)
                 .collect(Collectors.toList());
     }
 
     public void deleteCompleted() {
-        todos.removeIf(todo -> todo.getState() == State.COMPLETED);
+        todos.removeIf(Todo::isCompleted);
     }
 }

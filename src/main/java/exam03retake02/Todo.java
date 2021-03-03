@@ -31,6 +31,10 @@ public class Todo implements Comparable<Todo> {
         return state;
     }
 
+    public boolean isCompleted(){
+        return state == State.COMPLETED;
+    }
+
     @Override
     public int compareTo(Todo o) {
         return priority - o.priority;
