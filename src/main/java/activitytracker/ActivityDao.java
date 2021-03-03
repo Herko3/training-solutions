@@ -16,7 +16,7 @@ public class ActivityDao {
     public void insertActivity(Activity activity) {
         try (
                 Connection conn = dataSource.getConnection();
-                PreparedStatement stmt = conn.prepareStatement("INSERT INTO activities(start_time, activity_desc, activity_type) VALUES (?,?,?)");
+                PreparedStatement stmt = conn.prepareStatement("INSERT INTO activities(start_time, activity_desc, activity_type) VALUES (?,?,?)")
         ) {
 
             stmt.setTimestamp(1, Timestamp.valueOf(activity.getStartTime()));
@@ -33,7 +33,7 @@ public class ActivityDao {
     public Activity findById(long id) {
         try (
                 Connection conn = dataSource.getConnection();
-                PreparedStatement stmt = conn.prepareStatement("select * from activities where id =?")
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM activities WHERE id =?")
         ) {
             stmt.setLong(1, id);
             List<Activity> result = selectActivityByPreparedStatement(stmt);
@@ -66,7 +66,7 @@ public class ActivityDao {
     public List<Activity> selectAllActivities() {
         try (
                 Connection conn = dataSource.getConnection();
-                PreparedStatement stmt = conn.prepareStatement("select * from activities");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM activities")
         ) {
             return selectActivityByPreparedStatement(stmt);
         } catch (SQLException se) {
@@ -77,7 +77,7 @@ public class ActivityDao {
     public List<Activity> selectByType(ActivityType type) {
         try (
                 Connection conn = dataSource.getConnection();
-                PreparedStatement stmt = conn.prepareStatement("select * from activities where activity_type=?");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM activities WHERE activity_type=?")
         ) {
             stmt.setString(1, type.toString());
             return selectActivityByPreparedStatement(stmt);
