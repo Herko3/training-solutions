@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,6 +37,11 @@ class TaskManagerTest {
     @Test
     public void testAddressWithMostOrders(){
         assertEquals("1114 Kossuth 9",manager.getAddressWithMostOrders());
+    }
+
+    @Test
+    public void testWorstDay(){
+        assertEquals(LocalDate.of(2020,12,3), manager.worstDay());
     }
 
 }

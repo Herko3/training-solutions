@@ -50,6 +50,25 @@ public class TaskManager {
                 .findAny();
     }
 
+    public LocalDate worstDay(){
+        Map<LocalDate, Long> ordersByDate = orders.stream()
+                .collect(groupingBy(Order::getDate, counting()));
+
+        long orders = Integer.MAX_VALUE;
+        LocalDate resultDate = null;
+
+        for(Map.Entry<LocalDate,Long> entry : ordersByDate.entrySet()){
+            long actualOrders = entry.getValue();
+            if(actualOrders < orders){
+                orders = actualOrders;
+                resultDate = entry.getKey();
+            }
+        }
+
+        return resultDate;
+
+    }
+
     public Map<String, Long> ordersByCourier() {
         return orders.stream()
                 .collect(groupingBy(Order::getCourier, counting()));
