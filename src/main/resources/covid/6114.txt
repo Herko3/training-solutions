@@ -1,0 +1,15 @@
+Időpont;Név;Irányítószám;Életkor;E-mail cím;TAJ szám
+08:00;Pren Cicccitti;6114;100;pcicccitti7g@indiatimes.com;123459466
+08:30;Ginnie Thoumas;6114;89;gthoumaska@cnbc.com;123464086
+09:00;Vanessa Stuke;6114;87;vstuke3b@google.com.au;123457974
+09:30;Aindrea Vinau;6114;82;avinaumx@tripod.com;123465038
+10:00;Clifford Dubber;6114;82;cdubberkv@answers.com;123464299
+10:30;Kellina Winfield;6114;74;kwinfieldy@github.io;123457125
+11:00;Leonid Polycote;6114;61;lpolycoteet@adobe.com;123462116
+11:30;Adelice Broke;6114;48;abrokeb2@nydailynews.com;123460765
+12:00;Lannie Verbrugghen;6114;42;lverbrugghenn1@google.de;123465076
+12:30;Cyrillus Fernier;6114;40;cfernierlb@fc2.com;123464457
+13:00;Kasey Skelington;6114;38;kskelingtonch@adobe.com;123461274
+13:30;Yale Badsworth;6114;29;ybadsworth5q@reddit.com;123458847
+14:00;Shane Elbourne;6114;26;selbourne3k@chronoengine.com;123458067
+14:30;Lucina Versey;6114;23;lversey3q@moonfruit.com;123458122

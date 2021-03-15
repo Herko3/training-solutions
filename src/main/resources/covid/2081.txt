@@ -1,0 +1,1 @@
+Időpont;Név;Irányítószám;Életkor;E-mail cím;TAJ szám

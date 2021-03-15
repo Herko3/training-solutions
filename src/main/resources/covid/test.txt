@@ -1,0 +1,3 @@
+Időpont;Név;Irányítószám;Életkor;E-mail cím;TAJ szám
+08:00;John Doe;1214;28;jd@gmail.com;123456781
+08:30;Jack Doe;1214;30;jd@asd.com;12346534
